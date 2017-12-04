@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_centerInParent="true"
+              android:gravity="center"
+              android:paddingTop="40dp"
+              android:paddingBottom="40dp"
+              android:layout_width="300dp"
+              android:layout_height="200dp">
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical">
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访人中文姓："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/visitorChineseSurnameDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/visitorChineseSurnameFirst"/>
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="被访人中文姓："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/audienceChineseSurnameFirstDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/audienceChineseSurnameFirst"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访人中文名："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/visitorChineseFirstnameDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/visitorChineseFirstnameName"/>
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="被访人中文名："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/audienceChineseNameFirstnameDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/audienceChineseNameFirstname"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访人英文姓："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/visitorEnglishSurnameDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/visitorEnglishSurnameFirst"/>
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="被访人英文姓："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/audienceEnglishSurnameFirstDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/audienceEnglishSurnameFirst"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访人英文名："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/visitorEnglishFirstnameDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/visitorEnglishFirstnameName"/>
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="被访人英文名："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/audienceEnglishNameFirstnameDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/audienceEnglishNameFirstname"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访人手机："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/visitorMobileDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:inputType="number"
+                      android:id="@+id/visitorMobile"/>
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="被访人手机："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/audienceMobileDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:inputType="number"
+                      android:id="@+id/audienceMobile"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访人邮箱："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/visitorEmailDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/visitorEmail"/>
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="被访人邮箱："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/audienceEmailDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:id="@+id/audienceEmail"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访人国籍："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/visitorNationalityDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:inputType="text"
+                      android:id="@+id/visitorNationality"/>
+            <TextView android:layout_width="360dp" android:layout_height="wrap_content"
+                      android:textSize="26dp"
+                      android:gravity="right"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访人公司："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/visitorCompanyDes"/>
+            <EditText android:layout_width="200dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:inputType="text"
+                      android:id="@+id/visitorCompany"/>
+            <TextView android:layout_width="360dp" android:layout_height="wrap_content"
+                      android:textSize="26dp"
+                      android:gravity="right"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <TextView android:layout_width="202dp" android:layout_height="wrap_content"
+                      android:text="来访的原因："
+                      android:textSize="26dp"
+                      android:gravity="right"
+                      android:id="@+id/reasonDes"/>
+            <EditText android:layout_width="560dp" android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:inputType="text"
+                      android:id="@+id/reason"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

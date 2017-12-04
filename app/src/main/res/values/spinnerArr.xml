@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string-array name="nationality">
+        <item>CN(中国大陆)</item>
+        <item>HK(中国香港)</item>
+        <item>TW(中国台湾)</item>
+        <item>US(美国)</item>
+        <item>Other(其他)</item>
+    </string-array>
+
+    <string-array name="location">
+        <item>New Bund Office</item>
+    </string-array>
+    <string-array name="business">
+        <item>otis</item>
+        <item>ccs</item>
+        <item>GST</item>
+    </string-array>
+</resources>

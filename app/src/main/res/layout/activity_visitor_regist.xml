@@ -36,107 +36,122 @@
                           android:layout_marginRight="20dp"
                           android:orientation="vertical">
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:id="@+id/visitEnglishFirstNameDesc"
                           android:text="First name(英文名或拼音)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:id="@+id/visitEnglishFirstName"
                           android:singleLine="true"
                           android:maxLines="1"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:id="@+id/visitEnglishSurnameDesc"
                           android:text="Surname(英文姓)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:id="@+id/visitEnglishSurname"
                           android:singleLine="true"
                           android:maxLines="1"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:text="Surname in Chinese(中文姓)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:id="@+id/visitChineseSurname"
                           android:singleLine="true"
                           android:maxLines="1"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:text="First name in Chinese(中文名)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:id="@+id/visitChineseFirstName"
                           android:singleLine="true"
                           android:maxLines="1"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:id="@+id/visitMobileDesc"
                           android:text="Mobile(电话号码)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:id="@+id/visitMobile"
                           android:singleLine="true"
                           android:maxLines="1"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:id="@+id/visitEmailDesc"
                           android:text="Email(邮箱)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:id="@+id/visitEmail"
                           android:singleLine="true"
                           android:maxLines="1"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
             </LinearLayout>
             <View android:layout_width="1dp" android:layout_height="match_parent" android:background="#A0A0A0"/>
             <LinearLayout android:layout_width="350dp" android:layout_height="wrap_content"
                           android:layout_marginLeft="20dp"
                           android:orientation="vertical">
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:id="@+id/visitNationalityDesc"
                           android:text="Nationality(国籍)"/>
-                <Spinner android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/nationality"
+                <Spinner android:layout_width="match_parent" android:layout_height="wrap_content"
+                         android:entries="@array/nationality"
+                         android:layout_marginStart="-15dp"
+                         android:theme="@style/myDropTheme"
                          android:id="@+id/visitNationality"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:id="@+id/visitCompanyDesc"
                           android:text="Company(公司名称)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:id="@+id/visitCompany"
                           android:singleLine="true"
                           android:maxLines="1"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:text="Business"/>
-                <Spinner android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/business"
+                <Spinner android:layout_width="match_parent" android:layout_height="wrap_content"
+                         android:entries="@array/business"
+                         android:layout_marginStart="-15dp"
+                         android:theme="@style/myDropTheme"
                          android:id="@+id/visitBusiness"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:text="Location"/>
-                <Spinner android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/location"
+                <Spinner android:layout_width="match_parent" android:layout_height="wrap_content"
+                         android:entries="@array/location"
+                         android:layout_marginStart="-15dp"
+                         android:theme="@style/myDropTheme"
                          android:id="@+id/visitLocation"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
+                          android:id="@+id/namelDesc"
+                          android:text="Employee Name(受访人的姓名)"/>
+                <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:id="@+id/name"
+                          android:maxLines="1"
+                          android:singleLine="true"
+                          android:textSize="18sp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                          android:textSize="18sp"
                           android:id="@+id/audienceEmailDesc"
                           android:text="Employee Email(受访人的邮箱)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
                           android:id="@+id/audienceEmail"
                           android:maxLines="1"
                           android:singleLine="true"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:textSize="20sp"
+                          android:textSize="18sp"
                           android:id="@+id/reasonDesc"
                           android:text="Reason(事由)"/>
                 <EditText android:layout_width="match_parent" android:layout_height="wrap_content"
-                          android:background="@drawable/text_area_shape"
-                          android:minLines="3"
-                          android:maxLines="3"
-                          android:gravity="top"
+                          android:maxLines="1"
                           android:id="@+id/reason"
-                          android:textSize="20sp"/>
+                          android:textSize="18sp"/>
             </LinearLayout>
         </LinearLayout>
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"

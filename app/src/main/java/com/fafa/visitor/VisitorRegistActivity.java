@@ -3,6 +3,7 @@ package com.fafa.visitor;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class VisitorRegistActivity extends Activity {
     private Spinner visitLocation;//来访人Location
     private EditText audienceEmail;//被访人邮箱
     private EditText reason;//来访事由
+    private EditText name;
 
 
     private TextView visitEnglishSurnameDesc;
@@ -42,6 +44,7 @@ public class VisitorRegistActivity extends Activity {
     private TextView visitNationalityDesc;
     private TextView reasonDesc;
     private TextView visitCompanyDesc;
+    private TextView nameDesc;
 
     private TextView register;//登记
     private TextView back;//返回
@@ -55,10 +58,13 @@ public class VisitorRegistActivity extends Activity {
     private final int SHOW_MESSAGE_LONG = 4;//显示消息
 
     private final SimpleDateFormat LONG_DATE = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    private final String SERVERPATH = "http://172.28.167.6:6160";//UTC
-//    private final String SERVERPATH = "http://demo.fafa.com.cn:6160";//fafaDemo
-//    private final String SERVERPATH = "http://192.168.1.109:6160";//localhost
 
+    private final String SERVERPATH = "http://10.176.16.16:6160";//UTC new
+    //private final String SERVERPATH = "http://172.28.167.6:6160";//UTC old
+    //private final String SERVERPATH = "http://demo.fafa.com.cn:6160";//fafaDemo
+    //private final String SERVERPATH = "http://192.168.1.109:6160";//localhost
+
+    private String protocol = "";
 
     private Handler handler = new Handler() {
         @Override
@@ -87,6 +93,7 @@ public class VisitorRegistActivity extends Activity {
                     visitCompany.setText("");
                     audienceEmail.setText("");
                     reason.setText("");
+                    name.setText("");
                     break;
             }
         }
@@ -120,64 +127,81 @@ public class VisitorRegistActivity extends Activity {
                         &&visitMobile.getText()!=null&&!"".equals(visitMobile.getText().toString().trim())
                         &&visitEmail.getText()!=null&&!"".equals(visitEmail.getText().toString().trim())
                         &&reason.getText()!=null&&!"".equals(reason.getText().toString().trim())
+                        && name.getText()!=null&&!"".equals(name.getText().toString().trim())
                         &&visitCompany.getText()!=null&&!"".equals(visitCompany.getText().toString().trim())
                         ){
 
-                    handler.sendEmptyMessage(LOADING_SHOW);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(VisitorRegistActivity.this);
 
-                    new Thread(new Runnable() {
+                    TextView tv = new TextView(VisitorRegistActivity.this);
+                    tv.setPadding(20,20,20,20);
+                    tv.setText(protocol);
+                    ScrollView sv = new ScrollView(VisitorRegistActivity.this);
+                    sv.addView(tv);
+                    builder.setView(sv);
+                    builder.setNegativeButton("Cancel(取消)", null);
+                    builder.setPositiveButton("Agree(同意)", new DialogInterface.OnClickListener() {
                         @Override
-                        public void run() {
-                            final Map<String, String> params = new HashMap<String, String>();
+                        public void onClick(DialogInterface dialog, int which) {
+                            handler.sendEmptyMessage(LOADING_SHOW);
 
-                            params.put("visitEnglishSurname",visitEnglishSurname.getText().toString());//来访人英文姓
-                            params.put("visitEnglishFirstName",visitEnglishFirstName.getText().toString());//来访人英文名
-                            params.put("visitChineseSurname",visitChineseSurname.getText().toString());//来访人中文姓
-                            params.put("visitChineseFirstName",visitChineseFirstName.getText().toString());//来访人中文名
-                            params.put("visitMobile",visitMobile.getText().toString());//来访人电话号码
-                            params.put("visitEmail",visitEmail.getText().toString());//来访人邮箱
-                            params.put("visitNationality",(String)visitNationality.getSelectedItem());//来访人国籍
-                            params.put("visitCompany",visitCompany.getText().toString());//来访人公司
-                            params.put("visitBusiness",(String)visitBusiness.getSelectedItem());//来访人Business
-                            params.put("visitLocation",(String)visitLocation.getSelectedItem());//来访人Location
-                            params.put("audienceEmail",audienceEmail.getText().toString());//被访人邮箱
-                            params.put("reason",reason.getText().toString());//来访事由
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    final Map<String, String> params = new HashMap<String, String>();
 
-                            params.put("visitTime",LONG_DATE.format(new Date()));//来访时间
-                            params.put("status","0");//是否进入，离开  0未进入,1进入,2已出来
-                            params.put("blacklist","1");//是否在白名单 1为在
+                                    params.put("visitEnglishSurname",visitEnglishSurname.getText().toString());//来访人英文姓
+                                    params.put("visitEnglishFirstName",visitEnglishFirstName.getText().toString());//来访人英文名
+                                    params.put("visitChineseSurname",visitChineseSurname.getText().toString());//来访人中文姓
+                                    params.put("visitChineseFirstName",visitChineseFirstName.getText().toString());//来访人中文名
+                                    params.put("visitMobile",visitMobile.getText().toString());//来访人电话号码
+                                    params.put("visitEmail",visitEmail.getText().toString());//来访人邮箱
+                                    params.put("visitNationality",(String)visitNationality.getSelectedItem());//来访人国籍
+                                    params.put("visitCompany",visitCompany.getText().toString());//来访人公司
+                                    params.put("visitBusiness",(String)visitBusiness.getSelectedItem());//来访人Business
+                                    params.put("visitLocation",(String)visitLocation.getSelectedItem());//来访人Location
+                                    params.put("audienceEmail",audienceEmail.getText().toString());//被访人邮箱
+                                    params.put("reason",reason.getText().toString());//来访事由
+                                    params.put("name",name.getText().toString());
+
+                                    params.put("visitTime",LONG_DATE.format(new Date()));//来访时间
+                                    params.put("status","0");//是否进入，离开  0未进入,1进入,2已出来
+                                    params.put("blacklist","1");//是否在白名单 1为在
 
 
-                            try{
-                                Result result = HttpUtil.post(params,SERVERPATH+"/fengqi/reserve/save");
-                                if(result!=null&&result.getSuccess()){
-                                    Message message = new Message();
-                                    message.what = SHOW_MESSAGE;
-                                    message.obj = "预约成功";
-                                    handler.sendMessage(message);
+                                    try{
+                                        Result result = HttpUtil.post(params,SERVERPATH+"/fengqi/reserve/save");
+                                        if(result!=null&&result.getSuccess()){
+                                            Message message = new Message();
+                                            message.what = SHOW_MESSAGE;
+                                            message.obj = "预约成功";
+                                            handler.sendMessage(message);
 
-                                    handler.sendEmptyMessage(FORM_ClEAR);
+                                            handler.sendEmptyMessage(FORM_ClEAR);
 
-                                }else{
-                                    Message message = new Message();
-                                    message.what = SHOW_MESSAGE;
-                                    message.obj = "请求异常";
-                                    if(!result.getSuccess()&&result.getResultValues().get("message")!=null){
-                                        message.obj = result.getResultValues().get("message").toString();
+                                        }else{
+                                            Message message = new Message();
+                                            message.what = SHOW_MESSAGE;
+                                            message.obj = "请求异常";
+                                            if(!result.getSuccess()&&result.getResultValues().get("message")!=null){
+                                                message.obj = result.getResultValues().get("message").toString();
+                                            }
+                                            handler.sendMessage(message);
+                                        }
+                                        handler.sendEmptyMessage(LOADING_HIDE);
+                                    }catch (Exception e){
+                                        Message message = new Message();
+                                        message.what = SHOW_MESSAGE_LONG;
+                                        message.obj = "服务器访问异常";
+                                        handler.sendMessage(message);
+                                        handler.sendEmptyMessage(LOADING_HIDE);
                                     }
-                                    handler.sendMessage(message);
                                 }
-                                handler.sendEmptyMessage(LOADING_HIDE);
-                            }catch (Exception e){
-                                Message message = new Message();
-                                message.what = SHOW_MESSAGE_LONG;
-                                message.obj = "服务器访问异常";
-                                handler.sendMessage(message);
-                                handler.sendEmptyMessage(LOADING_HIDE);
-                            }
+                            }).start();//这个start()方法不要忘记了
                         }
-                    }).start();//这个start()方法不要忘记了
-
+                    });
+                    final AlertDialog dialog = builder.create();
+                    dialog.show();
                 }else{
                     Message message = new Message();
                     message.what = SHOW_MESSAGE;
@@ -218,12 +242,14 @@ public class VisitorRegistActivity extends Activity {
         visitLocation = (Spinner) findViewById(R.id.visitLocation);//来访人Location
         audienceEmail = (EditText) findViewById(R.id.audienceEmail);//被访人邮箱
         reason = (EditText) findViewById(R.id.reason);//来访事由
+        name = (EditText) findViewById(R.id.name);
 
         visitEnglishSurnameDesc = (TextView) findViewById(R.id.visitEnglishSurnameDesc);
         visitEnglishFirstNameDesc = (TextView) findViewById(R.id.visitEnglishFirstNameDesc);
         visitMobileDesc = (TextView) findViewById(R.id.visitMobileDesc);
         visitEmailDesc = (TextView) findViewById(R.id.visitEmailDesc);
         reasonDesc = (TextView) findViewById(R.id.reasonDesc);
+        nameDesc = (TextView) findViewById(R.id.namelDesc);
         visitCompanyDesc = (TextView) findViewById(R.id.visitCompanyDesc);
         visitNationalityDesc = (TextView) findViewById(R.id.visitNationalityDesc);
 
@@ -233,6 +259,7 @@ public class VisitorRegistActivity extends Activity {
         visitMobileDesc.setText(Html.fromHtml(visitMobileDesc.getText()+"<font color=\"#ff0000\">*</font>"));
         visitEmailDesc.setText(Html.fromHtml(visitEmailDesc.getText()+"<font color=\"#ff0000\">*</font>"));
         reasonDesc.setText(Html.fromHtml(reasonDesc.getText()+"<font color=\"#ff0000\">*</font>"));
+        nameDesc.setText(Html.fromHtml(nameDesc.getText()+"<font color=\"#ff0000\">*</font>"));
         visitCompanyDesc.setText(Html.fromHtml(visitCompanyDesc.getText()+"<font color=\"#ff0000\">*</font>"));
         visitNationalityDesc.setText(Html.fromHtml(visitNationalityDesc.getText()+"<font color=\"#ff0000\">*</font>"));
 
@@ -248,11 +275,53 @@ public class VisitorRegistActivity extends Activity {
         visitLocation.clearFocus();
         audienceEmail.clearFocus();
         reason.clearFocus();
+        name.clearFocus();
 
         register = (TextView) findViewById(R.id.register);
         back = (TextView) findViewById(R.id.back);
 
         loading = (RelativeLayout) findViewById(R.id.loading);
+
+
+        //todo : 从服务器获取
+        /*List<String> list = new ArrayList<String>();
+        list.add("AAA");
+        list.add("BBB");
+        list.add("CCC");
+        list.add("DDD");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,list);
+        visitNationality.setAdapter(adapter);*/
+
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final Map<String, String> params = new HashMap<String, String>();
+                try{
+                    System.out.println(SERVERPATH+"/fengqi/reserve/protocol?code=protocol");
+                    Result result = HttpUtil.get(SERVERPATH+"/fengqi/reserve/protocol?code=protocol");
+                    if(result!=null&&result.getSuccess()){
+
+                        if(result.getResultValues().get("content")!=null){
+                            protocol = result.getResultValues().get("content").toString();
+                        }
+                    }else{
+                        Message message = new Message();
+                        message.what = SHOW_MESSAGE_LONG;
+                        message.obj = "无法获取协议";
+                        handler.sendMessage(message);
+                    }
+                    handler.sendEmptyMessage(LOADING_HIDE);
+                }catch (Exception e){
+                    Message message = new Message();
+                    message.what = SHOW_MESSAGE_LONG;
+                    message.obj = "服务器访问异常";
+                    handler.sendMessage(message);
+                    handler.sendEmptyMessage(LOADING_HIDE);
+                }
+            }
+        }).start();//这个start()方法不要忘记了
 
     }
 }

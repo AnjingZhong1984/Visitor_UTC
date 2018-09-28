@@ -11,6 +11,7 @@
     <string-array name="location">
         <item>New Bund Office</item>
     </string-array>
+
     <string-array name="business">
         <item>otis</item>
         <item>ccs</item>

@@ -102,26 +102,19 @@ public class UsbPrintUtil {
     private void usbPrint(Map<String,String> parameters){
         sendCommand(mEndpointIntr,mConnection,PrinterCmdUtils.init_printer());
         StringBuffer data = new StringBuffer();
-        data.append("{D1000,1000,0800|}");//设置纸张尺寸，标签间隔距离、标签宽度、标签高度
+        data.append("{D1000,0900,0550|}");//设置纸张尺寸，标签间隔距离、标签宽度、标签高度
         data.append("{C|}");//清除缓存区数据
-        data.append("{U2;0130|}");//向后走纸到打印位置
+        data.append("{U2;0030|}");//向后走纸到打印位置
         data.append("{AX;+000,+000,+00|}");//定位打印原点x
         data.append("{AY;+00,0|}");//定位打印原点y
-        data.append("{PC000;0000,0100,15,15,r,00,B|}");//打印数据格式
-        data.append("{RC000;           会客单(Visitor Ticket) |}");//打印数据
-        data.append("{PC001;0000,0180,15,15,r,00,B|}");//打印数据格式
-        data.append("{RC001;      来访时间(Time):"+parameters.get("date")+"|}");//打印数据
-        data.append("{PC002;0000,0260,15,15,r,00,B|}");//打印数据格式
-        data.append("{RC002;      访客姓名(Name):"+parameters.get("visitEnglishFirstName")+" "+parameters.get("visitEnglishSurname")+"|}");//打印数据
-        //data.append("{RC002;访客姓名:"+parameters.get("visitChineseSurname")+parameters.get("visitChineseFirstName")+"|}");//打印数据
-        data.append("{PC003;0000,0340,15,15,r,00,B|}");//打印数据格式
-        data.append("{RC003;      电话号码(Mobile):"+parameters.get("visitMobile")+"|}");//打印数据
-        data.append("{PC004;0000,0420,15,15,r,00,B|}");//打印数据格式
-        data.append("{RC004;      访问事由(Reason):"+parameters.get("reason")+"|}");//打印数据
-        data.append("{PC005;0000,0500,15,15,r,00,B|}");//打印数据格式
-        data.append("{RC005;      被访人员(AudienceName):"+parameters.get("name")+"|}");//打印数据
-        data.append("{PC005;0000,0580,15,15,r,00,B|}");//打印数据格式
-        data.append("{RC005;      凭证号(PIN):"+parameters.get("pinCode")+"|}");//打印数据
+        data.append("{PC001;0900,0300,15,15,r,22,B|}");//打印数据格式
+        data.append("{RC001; 来访时间(Time)     "+parameters.get("date")+"|}");//打印数据
+        data.append("{PC002;0900,0220,15,15,r,22,B|}");//打印数据格式
+        data.append("{RC002; 访客姓名(Name)     "+parameters.get("visitEnglishFirstName")+" "+parameters.get("visitEnglishSurname")+"|}");//打印数据
+        data.append("{PC003;0900,0140,15,15,r,22,B|}");//打印数据格式
+        data.append("{RC003; 被访对象(Employee) "+parameters.get("name")+"|}");//打印数据
+        data.append("{PC004;0900,0060,15,15,r,22,B|}");//打印数据格式
+        data.append("{RC004; 凭证号(Pin)        "+parameters.get("pinCode")+"|}");//打印数据
         data.append("{XS;I,0001,0000C1010|}");//打印设置
 
         try {
